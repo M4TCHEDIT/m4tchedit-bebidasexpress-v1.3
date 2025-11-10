@@ -28,14 +28,14 @@ const App = {
             state.totalSlides = state.slidesElement ? state.slidesElement.children.length : 0;
             
             if (state.totalSlides > 0) {
-                this.showSlide(state.currentSlide); // Fija la posición inicial (0%)
+                this.showSlide(state.currentSlide); 
                 this.startInterval();
             }
         },
         showSlide(index) {
             const state = App.state.carousel;
             if (state.slidesElement) {
-                // Aplica el desplazamiento: 0% para el slide 0, 100% para el slide 1, etc.
+                // El 100% de movimiento es por cada slide que debe moverse
                 state.slidesElement.style.transform = `translateX(-${index * 100}%)`;
             }
         },
@@ -49,7 +49,6 @@ const App = {
             if (state.interval) {
                 clearInterval(state.interval);
             }
-            // Inicia el movimiento SOLO después del primer intervalo (5000ms)
             state.interval = setInterval(() => this.nextSlide(), 5000);
         }
     },
@@ -144,8 +143,8 @@ const App = {
     toggleClientType() {
         App.state.clientType = App.state.clientType === 'retail' ? 'wholesale' : 'retail';
         document.getElementById('client-type').textContent = App.state.clientType === 'retail' ? 'Minorista' : 'Mayorista';
-        App.renderBestsellers(); // Reactividad: actualizar precios de productos
-        App.renderCart(); // Reactividad: actualizar precios del carrito
+        App.renderBestsellers(); 
+        App.renderCart(); 
     },
 
     addToCart(productId) {
@@ -251,7 +250,6 @@ const App = {
         const newName = prompt(`Editar nombre de ${product.name}:`, product.name);
         if (newName === null) return; 
 
-        // Lógica de edición simplificada para el ejemplo
         const newRetailPrice = parseFloat(prompt(`Editar precio minorista:`, product.retailPrice));
         if (isNaN(newRetailPrice)) return;
 
@@ -274,11 +272,8 @@ const App = {
 
     // 6. INICIALIZACIÓN
     init() {
-        // Inicializa los componentes de la vista
         this.renderBestsellers();
         this.renderCart(); 
-
-        // Inicializa el carrusel con la lógica modular
         this.carousel.init();
     }
 };

@@ -78,13 +78,13 @@ header {
 .hero-slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  /* ✨ CORRECCIÓN CRÍTICA: Usamos un ancho grande */
+  /* CORRECCIÓN DE ANCHO */
   width: 500%; 
   height: 100%;
 }
 
 .hero-slide {
-  /* ✨ CORRECCIÓN CRÍTICA: Cada slide ocupa 20% del contenedor 500% (100% de la vista) */
+  /* CORRECCIÓN DE ANCHO */
   flex: 0 0 20%; 
   display: flex;
   align-items: center;
@@ -114,6 +114,36 @@ header {
 .hero-content p {
   font-size: 1.2rem;
 }
+
+/* ESTILOS PARA BOTONES MANUALES */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+  left: 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+.next-btn {
+  right: 10px;
+  border-radius: 4px 0 0 4px;
+}
+/* FIN ESTILOS BOTONES MANUALES */
 
 /* Trust Badges */
 .trust-badges {
@@ -425,5 +455,10 @@ footer {
   }
   .cart-panel {
     width: 100%;
+  }
+  /* Ajuste para que los botones manuales no estorben mucho en móvil */
+  .prev-btn, .next-btn {
+    padding: 5px 8px;
+    font-size: 20px;
   }
 }

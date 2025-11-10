@@ -78,12 +78,14 @@ header {
 .hero-slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 200%; 
+  /* ✨ CORRECCIÓN CRÍTICA: Usamos un ancho grande */
+  width: 500%; 
   height: 100%;
 }
 
 .hero-slide {
-  flex: 0 0 50%;
+  /* ✨ CORRECCIÓN CRÍTICA: Cada slide ocupa 20% del contenedor 500% (100% de la vista) */
+  flex: 0 0 20%; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -313,7 +315,6 @@ button:hover {
   background: rgba(0,0,0,0.9);
   z-index: 2000;
   color: white;
-  /* CORRECCIÓN: Permite el scroll vertical en el panel completo */
   overflow-y: auto;
   -webkit-overflow-scrolling: touch; 
 }

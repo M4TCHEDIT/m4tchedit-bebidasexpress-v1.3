@@ -20,7 +20,7 @@ const App = {
         }
     },
 
-    // 2. LÓGICA DEL CARRUSEL (Componente aislado)
+    // 2. LÓGICA DEL CARRUSEL (MANUAL)
     carousel: {
         init() {
             const state = App.state.carousel;
@@ -29,7 +29,7 @@ const App = {
             
             if (state.totalSlides > 0) {
                 this.showSlide(state.currentSlide); 
-                this.startInterval();
+                // *** SE ELIMINA LA INICIALIZACIÓN AUTOMÁTICA (startInterval) ***
             }
         },
         showSlide(index) {
@@ -41,16 +41,17 @@ const App = {
         },
         nextSlide() {
             const state = App.state.carousel;
+            // Cálculo para avanzar (hace loop al llegar al final)
             state.currentSlide = (state.currentSlide + 1) % state.totalSlides;
             this.showSlide(state.currentSlide);
         },
-        startInterval() {
+        prevSlide() {
             const state = App.state.carousel;
-            if (state.interval) {
-                clearInterval(state.interval);
-            }
-            state.interval = setInterval(() => this.nextSlide(), 5000);
+            // Cálculo para retroceder (hace loop al llegar al inicio)
+            state.currentSlide = (state.currentSlide - 1 + state.totalSlides) % state.totalSlides;
+            this.showSlide(state.currentSlide);
         }
+        // *** SE ELIMINA LA FUNCIÓN startInterval ***
     },
 
     // 3. FUNCIONES DE RENDERIZADO (Reactividad simulada)
